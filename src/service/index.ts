@@ -5,7 +5,7 @@
 /** Generate by swagger-axios-codegen */
 /* eslint-disable */
 // @ts-nocheck
-import axiosStatic, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axiosStatic, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 export interface IRequestOptions extends AxiosRequestConfig {
   /** only in axios interceptor config*/
@@ -33,37 +33,46 @@ export interface ServiceOptions {
 export const serviceOptions: ServiceOptions = {};
 
 // Instance selector
-export function axios(configs: IRequestConfig, resolve: (p: any) => void, reject: (p: any) => void): Promise<any> {
+export function axios(
+  configs: IRequestConfig,
+  resolve: (p: any) => void,
+  reject: (p: any) => void
+): Promise<any> {
   if (serviceOptions.axios) {
     return serviceOptions.axios
       .request(configs)
-      .then(res => {
+      .then((res) => {
         resolve(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   } else {
-    throw new Error('please inject yourself instance like axios  ');
+    throw new Error("please inject yourself instance like axios  ");
   }
 }
 
-export function getConfigs(method: string, contentType: string, url: string, options: any): IRequestConfig {
+export function getConfigs(
+  method: string,
+  contentType: string,
+  url: string,
+  options: any
+): IRequestConfig {
   const configs: IRequestConfig = {
     loading: serviceOptions.loading,
     showError: serviceOptions.showError,
     ...options,
     method,
-    url
+    url,
   };
   configs.headers = {
     ...options.headers,
-    'Content-Type': contentType
+    "Content-Type": contentType,
   };
   return configs;
 }
 
-export const basePath = '';
+export const basePath = "";
 
 export interface IList<T> extends Array<T> {}
 export interface List<T> extends Array<T> {}
@@ -105,9 +114,14 @@ export class UsersService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users';
+      let url = basePath + "/users";
 
-      const configs: IRequestConfig = getConfigs('post', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "post",
+        "application/json",
+        url,
+        options
+      );
 
       let data = params.body;
 
@@ -121,9 +135,14 @@ export class UsersService {
    */
   static usersControllerFindAll(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users';
+      let url = basePath + "/users";
 
-      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "get",
+        "application/json",
+        url,
+        options
+      );
 
       /** 适配ios13，get请求不允许带body */
 
@@ -141,10 +160,15 @@ export class UsersService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/users/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "get",
+        "application/json",
+        url,
+        options
+      );
 
       /** 适配ios13，get请求不允许带body */
 
@@ -164,10 +188,15 @@ export class UsersService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/users/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('patch', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "patch",
+        "application/json",
+        url,
+        options
+      );
 
       let data = params.body;
 
@@ -187,10 +216,15 @@ export class UsersService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/users/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "delete",
+        "application/json",
+        url,
+        options
+      );
 
       let data = null;
 
@@ -210,10 +244,15 @@ export class UsersService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/users/username/{username}';
-      url = url.replace('{username}', params['username'] + '');
+      let url = basePath + "/users/username/{username}";
+      url = url.replace("{username}", params["username"] + "");
 
-      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "get",
+        "application/json",
+        url,
+        options
+      );
 
       /** 适配ios13，get请求不允许带body */
 
@@ -234,9 +273,14 @@ export class PostsService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/posts';
+      let url = basePath + "/posts";
 
-      const configs: IRequestConfig = getConfigs('post', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "post",
+        "application/json",
+        url,
+        options
+      );
 
       let data = params.body;
 
@@ -250,9 +294,14 @@ export class PostsService {
    */
   static postsControllerFindAll(options: IRequestOptions = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/posts';
+      let url = basePath + "/posts";
 
-      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "get",
+        "application/json",
+        url,
+        options
+      );
 
       /** 适配ios13，get请求不允许带body */
 
@@ -270,10 +319,15 @@ export class PostsService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/posts/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/posts/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('get', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "get",
+        "application/json",
+        url,
+        options
+      );
 
       /** 适配ios13，get请求不允许带body */
 
@@ -293,10 +347,15 @@ export class PostsService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/posts/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/posts/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('patch', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "patch",
+        "application/json",
+        url,
+        options
+      );
 
       let data = params.body;
 
@@ -316,10 +375,15 @@ export class PostsService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/posts/{id}';
-      url = url.replace('{id}', params['id'] + '');
+      let url = basePath + "/posts/{id}";
+      url = url.replace("{id}", params["id"] + "");
 
-      const configs: IRequestConfig = getConfigs('delete', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "delete",
+        "application/json",
+        url,
+        options
+      );
 
       let data = null;
 
@@ -342,9 +406,14 @@ export class AuthService {
     options: IRequestOptions = {}
   ): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = basePath + '/auth/login';
+      let url = basePath + "/auth/login";
 
-      const configs: IRequestConfig = getConfigs('post', 'application/json', url, options);
+      const configs: IRequestConfig = getConfigs(
+        "post",
+        "application/json",
+        url,
+        options
+      );
 
       let data = params.body;
 
