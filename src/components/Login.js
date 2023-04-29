@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, Alert } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginButton = styled(Button)({
   marginTop: "1rem",
 });
 
 export default function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -22,9 +26,21 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const loginEntries = { username, password };
-    // const response = await axios.get(api.UsersService.usersControllerFindAll());
-    console.log("Donee !!");
+    const response = await axios.post("http://localhost:3000/auth/login", {
+      username,
+      password,
+    });
+    console.log(response);
+    if (response.status === 200) {
+      navigate("/");
+    }
+  };
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setShowAlert(false);
   };
 
   return (
@@ -71,6 +87,17 @@ export default function Login() {
             Sign In
           </LoginButton>
         </Grid>
+        {showAlert && (
+          <Alert
+            onClose={handleAlertClose}
+            variant="outlined"
+            severity="error"
+            sx={{ width: "50%", margin: "auto", marginTop: "30px" }}
+            autoHideDuration={3000}
+          >
+            Login Failed
+          </Alert>
+        )}
       </Grid>
     </form>
   );

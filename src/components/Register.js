@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid, Typography } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -21,10 +24,16 @@ export default function Register() {
     console.log(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Submit form logic goes here
-    console.log("Registred !!");
+    const response = await axios.post("http://localhost:3000/users", {
+      email,
+      username,
+      password,
+    });
+    console.log(response);
+    navigate("/login");
   };
 
   return (
