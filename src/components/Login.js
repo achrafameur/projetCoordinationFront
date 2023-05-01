@@ -99,6 +99,12 @@ export default function Login() {
           </Alert>
         )}
       </Grid>
+      <Typography sx={{ margin: "auto" }}>
+        Si tu n'as pas encore de compte,{" "}
+        <a href="/register" target="_blank" rel="noreferrer">
+          merci de s'enregistrer
+        </a>
+      </Typography>
     </form>
   );
 }
