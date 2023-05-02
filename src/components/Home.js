@@ -10,9 +10,6 @@ import {
   TableRow,
 } from "@mui/material";
 
-import Footer from "./Footer";
-import Header from "./Header";
-
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
@@ -25,33 +22,27 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Header />
-
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Titre</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Image</TableCell>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Titre</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell>Image</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {posts.map((post) => (
+            <TableRow key={post.id}>
+              <TableCell>{post.title}</TableCell>
+              <TableCell>{post.description}</TableCell>
+              <TableCell>
+                <img src={post.image} alt={post.title} width="100" />
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {posts.map((post) => (
-              <TableRow key={post.id}>
-                <TableCell>{post.title}</TableCell>
-                <TableCell>{post.description}</TableCell>
-                <TableCell>
-                  <img src={post.image} alt={post.title} width="100" />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Footer />
-    </>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
