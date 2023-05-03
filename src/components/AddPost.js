@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Grid, TextField } from "@mui/material";
 
-function AddPost() {
+export default function AddPost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -61,5 +61,3 @@ function AddPost() {
     </form>
   );
 }
-
-export default AddPost;
