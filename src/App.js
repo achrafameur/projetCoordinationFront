@@ -19,7 +19,7 @@ function App() {
         <Route path="/addPost" element={<AddPost />} />
         <Route path="/post/:id" element={<PostDetails />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

@@ -17,6 +17,7 @@ export default function Home() {
 
   const handlePostClick = (postId) => {
     setSelectedPostId(postId);
+    console.log(selectedPostId);
   };
 
   useEffect(() => {
