@@ -1,34 +1,73 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { Box, CircularProgress, Container, Grid } from "@mui/material";
 
-function PostDetails({ id }) {
+function PostDetails() {
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios.get(`http://localhost:3000/posts/${id}`);
+      setPost(result.data);
+    }
+    fetchData();
+  }, [id]);
+
+  if (!post) {
+    return (
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Container maxWidth="md">
+        <Box>
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to="/"
+            style={{
+              top: "5%",
+              left: "5%",
+            }}
+          >
+            Return
+          </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <img
+                src={post.image}
+                alt={post.title}
+                style={{ width: "100%", height: "auto", objectFit: "cover" }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Box style={{ padding: "10%" }}>
+                <Typography variant="h4" gutterBottom>
+                  {post.title}
+                </Typography>
+                <Typography variant="body1">{post.description}</Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </div>
   );
 }
 

@@ -17,9 +17,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addPost" element={<AddPost />} />
-        <Route path="/post" element={<PostDetails />} />
+        <Route path="/post/:id" element={<PostDetails />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
